@@ -15,6 +15,8 @@ SALES DECIMAL(10,2),
 ORDERDA DATE,
 STATUS VARCHAR(20),
 QTRID INT,
+MONTHIC INT,
+YEARID INT,
 PRODUCTIMSRP DECIMAL(10,2),
 PRODUCTI VARCHAR(50),
 CUSTOMEI INT,
@@ -30,3 +32,39 @@ CONTACTI VARCHAR(50),
 CONTACTI2 VARCHAR(50),
 DEALSIZE VARCHAR(20)
 );
+
+
+-- Inspecting Data
+SELECT * FROM rfm_data LIMIT 10;
+
+-- unique values
+SELECT DISTINCT status from rfm_data;
+
+SELECT DISTINCT status from rfm_data;
+SELECT DISTINCT COUNTRY from rfm_data;
+
+SELECT DISTINCT YEARID from rfm_data;
+SELECT DISTINCT PRODUCTI from rfm_data;
+
+SELECT DISTINCT DEALSIZE from rfm_data;
+SELECT DISTINCT TERRITROY from rfm_data;
+
+
+-- ==================================================
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
