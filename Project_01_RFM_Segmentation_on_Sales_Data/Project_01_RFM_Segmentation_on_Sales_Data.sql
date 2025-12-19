@@ -51,6 +51,12 @@ SELECT DISTINCT TERRITROY from rfm_data;
 
 
 -- ==================================================
+-- Grouping sales by product line to understand the distribution of sales across different product categories.alter
+-- We'are calculationg the total revenue and the number of orders for each product line.
+SELECT 	PRODUCTI, ROUND(sum(sales),0) AS Revenue, COUNT(DISTINCT ORDERNU) AS NO_OF_ORDERS
+from rfm_data
+group by PRODUCTI
+order by 3 desc;
 
 
 
