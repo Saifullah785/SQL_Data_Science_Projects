@@ -35,31 +35,36 @@ DEALSIZE VARCHAR(20)
 
 
 -- Inspecting Data
-SELECT * FROM rfm_data LIMIT 10;
+SELECT * FROM rfm_data_set LIMIT 10;
 
 -- unique values
-SELECT DISTINCT status from rfm_data;
+select distinct status from rfm_data_set;
 
-SELECT DISTINCT status from rfm_data;
-SELECT DISTINCT COUNTRY from rfm_data;
+select distinct status from rfm_data_set;
+select distinct COUNTRY from rfm_data_set;
 
-SELECT DISTINCT YEARID from rfm_data;
-SELECT DISTINCT PRODUCTI from rfm_data;
+select distinct year_id from rfm_data_set;
+select distinct PRODUCTLINE from rfm_data_set;
 
-SELECT DISTINCT DEALSIZE from rfm_data;
-SELECT DISTINCT TERRITROY from rfm_data;
+select distinct DEALSIZE from rfm_data_set;
+select distinct TERRITORY from rfm_data_set;
+
 
 
 -- ==================================================
 -- Grouping sales by product line to understand the distribution of sales across different product categories.alter
 -- We'are calculationg the total revenue and the number of orders for each product line.
-SELECT 	PRODUCTI, ROUND(sum(sales),0) AS Revenue, COUNT(DISTINCT ORDERNU) AS NO_OF_ORDERS
-from rfm_data
-group by PRODUCTI
+select PRODUCTLINE, ROUND(sum(sales),0) AS Revenue, COUNT(DISTINCT ORDERNUMBER) AS NO_OF_ORDERS
+from rfm_data_set
+group by PRODUCTLINE
 order by 3 desc;
 
 
-
+-- Analyzing sales revenue by year to identify trends or changes over time.
+SELECT YEAR_ID, SUM(sales) Revenue
+FROM rfm_data_set
+GROUP BY YEAR_ID
+ORDER BY 2 DESC;
 
 
 
