@@ -52,6 +52,7 @@ select distinct TERRITORY from rfm_data_set;
 
 
 -- ==================================================
+USE rfm_analysis;
 -- Grouping sales by product line to understand the distribution of sales across different product categories.alter
 -- We'are calculationg the total revenue and the number of orders for each product line.
 select PRODUCTLINE, ROUND(sum(sales),0) AS Revenue, COUNT(DISTINCT ORDERNUMBER) AS NO_OF_ORDERS
@@ -67,8 +68,20 @@ GROUP BY YEAR_ID
 ORDER BY 2 DESC;
 
 
+-- Investigating sales revenue by deal size to understand the impact of deal sizes on revenue.alter
+SELECT DEALSIZE, SUM(sales) Revenue
+FROM rfm_data_set
+GROUP BY DEALSIZE
+ORDER BY 2 DESC;
 
 
+-- Identifying the city with the highest sales in a specific country(e.g., 'UK').
+SELECT city, SUM(sales) AS Revenue
+FROM rfm_data_set
+WHERE country = 'UK'
+GROUP BY city
+ORDER BY Revenue DESC
+LIMIT 0, 1000;
 
 
 
