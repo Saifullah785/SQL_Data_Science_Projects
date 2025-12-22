@@ -84,9 +84,20 @@ ORDER BY Revenue DESC
 LIMIT 0, 1000;
 
 
+-- Finding the best month for sales in a specific year (e.g., 2003) and calculationg revenue and frequencey.
+SELECT MONTH_ID, SUM(sales) Revenue, COUNT(ORDERNUMBER) Frequency
+FROM rfm_data_set
+WHERE YEAR_ID = 2003
+GROUP BY MONTH_ID
+ORDER BY 2 DESC;
 
 
-
+-- Finding the best month for sales in a specific year (e.g., 2004) and calculationg revenue and frequencey.
+SELECT MONTH_ID, SUM(sales) Revenue, COUNT(ORDERNUMBER) Frequency
+FROM rfm_data_set
+WHERE YEAR_ID = 2004
+GROUP BY MONTH_ID
+ORDER BY 2 DESC;
 
 
 
