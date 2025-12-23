@@ -100,6 +100,44 @@ GROUP BY MONTH_ID
 ORDER BY 2 DESC;
 
 
+-- Finding the best month for sales in a specific year (e.g., 2005) and calculationg revenue and frequencey.
+SELECT MONTH_ID, SUM(sales) Revenue, COUNT(ORDERNUMBER) Frequency
+FROM rfm_data_set
+WHERE YEAR_ID = 2005
+GROUP BY MONTH_ID
+ORDER BY 2 DESC;
+
+
+-- Identifying the top-selling product line in a specific month(e.g., November 2004).
+SELECT MONTH_ID, PRODUCTLINE, SUM(sales) Revenue, COUNT(ORDERNUMBER)
+FROM rfm_data_set
+WHERE YEAR_ID = 2004 AND MONTH_ID = 11
+GROUP BY MONTH_ID, PRODUCTLINE
+ORDER BY 3 DESC;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
