@@ -116,6 +116,13 @@ GROUP BY MONTH_ID, PRODUCTLINE
 ORDER BY 3 DESC;
 
 
+-- Determining the best-selling product in the united satates.
+SELECT country, Year_ID, PRODUCTLINE, SUM(sales) Revenue
+FROM rfm_data_set
+WHERE country = 'USA'
+GROUP BY country, YEAR_ID, PRODUCTLINE
+ORDER BY 4 DESC;
+
 
 
 
