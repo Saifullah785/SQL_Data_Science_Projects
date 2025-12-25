@@ -123,7 +123,12 @@ WHERE country = 'USA'
 GROUP BY country, YEAR_ID, PRODUCTLINE
 ORDER BY 4 DESC;
 
-
+-- Identifying the top-selling product line in a specific month (e.g., November 2004).
+SELECT MONTH_ID, PRODUCTLINE, SUM(SALES) Revenue, COUNT(ORDERNUMBER)
+FROM rfm_data_set
+WHERE YEAR_ID = 2004 AND MONTH_ID = 11
+GROUP BY MONTH_ID, PRODUCTLINE
+ORDER BY 3 DESC;
 
 
 
