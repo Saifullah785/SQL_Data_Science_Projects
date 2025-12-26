@@ -132,6 +132,35 @@ ORDER BY 3 DESC;
 
 
 
+-- We need to calculate each metrics
+SELECT 
+    MAX(ORDERDATE)
+FROM
+    rfm_data;
+
+with cte1 as (
+select customername,
+sum(sales) as monetaryvalue,
+avg(sales) as AVGmonetaryvalue,
+count(distinct ordernumber) as Frequency,
+max(orderdate) as last_order_date,
+(select max(ORDERDATE) from rfm_data)  as final_date
+from rfm_data
+group by CUSTOMERNAME
+),
+cte2 as (
+select*,datediff(final_date,last_order_date)+1 as Recency from cte1
+order by Recency
+),
+cte3 as (
+select*,
+ntile(4) over(order by recency desc) as rfm_recency,
+ntile(4) over(order by frequency ) as rfm_frequency,
+ntile(4) over(order by monetaryvalue) as rfm_monetary
+ from cte2),
+
+
+
 
 
 
