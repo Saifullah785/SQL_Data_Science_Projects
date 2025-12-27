@@ -136,7 +136,7 @@ ORDER BY 3 DESC;
 SELECT 
     MAX(ORDERDATE)
 FROM
-    rfm_data;
+    rfm_data_set;
 
 with cte1 as (
 select customername,
@@ -158,6 +158,47 @@ ntile(4) over(order by recency desc) as rfm_recency,
 ntile(4) over(order by frequency ) as rfm_frequency,
 ntile(4) over(order by monetaryvalue) as rfm_monetary
  from cte2),
+ 
+ -- quatiles concepts
+ cte4 as (
+ SELECT *, concat(rfm_recency, rfm_frequency, rfm_monetary) as RFM_SCORE
+ FROM cte3
+ )
+ SELECT*,
+	customername,
+    rfm_score,
+    CASE
+		WHEN RFM_SCORE IN ('414', '314','424','434','444','324', '334') THEN 'Loyal Customers'
+		WHEN RFM_SCORE IN ('113', '124','214') THEN 'Potential Churners'
+        WHEN RFM_SCORE IN ('411', '422') THEN 'New Customers'
+		WHEN RFM_SCORE IN ('314','244') THEN 'BIG Spenders'
+        WHEN RFM_SCORE IN ('134','244') THEN 'Can`t Lose Them'
+        ELSE 'Other'
+        
+	END AS segment
+FROM 
+	cte4;
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
 
 
 
